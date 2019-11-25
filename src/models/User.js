@@ -6,6 +6,10 @@ const userSchema = new Schema({
   email: String,
   password: String,
   role: String,
+  state: {
+    type: Boolean,
+    default: 0
+  },
   userAvatar: {
     type: String,
     default:
