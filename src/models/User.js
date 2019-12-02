@@ -6,6 +6,7 @@ const userSchema = new Schema({
   email: String,
   password: String,
   role: String,
+  activationCode: String,
   state: {
     type: Boolean,
     default: 0
@@ -21,6 +22,10 @@ userSchema.set("timestamps", true);
 userSchema.methods.encriptarClave = async password => {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(password, salt);
+};
+
+userSchema.methods.activationCodeUser = () => {
+  return Date.now();
 };
 
 userSchema.methods.validarClave = function(password) {

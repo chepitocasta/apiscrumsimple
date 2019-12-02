@@ -10,13 +10,12 @@ router.post("/signup", validations.createUserValidation, authCrt.signUp);
 
 router.post("/signin", authCrt.signIn);
 
+// router.get("/cuentaactiva/:emailUser/:codeUser", (req, res) => {
+//   res.status(200).send(req.params);
+// });
+
+router.get("/cuentaactiva/:emailUser/:codeUser", authCrt.activeUser);
+
 router.get("/me", verificarToken, userCrt.getUser);
-
-// router.post("/mail", Email);
-
-router.get("/cuentaactiva/:codeUser", (req, res) => {
-  console.log(req.params.codeUser);
-  res.status(200).send(req.params.codeUser);
-});
 
 module.exports = router;
