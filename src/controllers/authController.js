@@ -81,7 +81,16 @@ const activeUser = async (req, res) => {
       .send({ message: "El usuario ya se encuentra activo" });
   }
 
-  res.status(200).send(user);
+  try {
+    const userUpdate = await UserMdl.updateOne(
+      { _id: user._id },
+      { state: true }
+    );
+  } catch (error) {
+    res.status(400).send(error);
+  }
+
+  res.status(200).send({ message: "Usuario Activado." });
 };
 
 module.exports = {
